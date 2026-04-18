@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LOTR Card</title>
+</head>
+<body>
+
+  <h1>Carta Lord of the Rings</h1>
+
+  <div class="card">
+    <h2 class="name"></h2>
+    <img class="image" />
+  </div>
+
+  <script>
+    fetch("https://ringsdb.com/api/public/cards/")
+      .then(response => response.json())
+      .then(data => {
+
+        const randomIndex = Math.floor(Math.random() * data.length);
+        const card = data[randomIndex]
+
+        const nameEl = document.querySelector(".name");
+        const imgEl = document.querySelector(".image");
+
+        
+        nameEl.innerText = card.name;
+
+        
+        imgEl.src = "https://ringsdb.com" + card.imagesrc;
+
+      })
+      .catch(error => {
+        console.log("Errore:", error);
+      });
+  </script>
+
+</body>
+</html>
